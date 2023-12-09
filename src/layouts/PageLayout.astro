@@ -1,0 +1,31 @@
+---
+import { Image } from "astro:assets";
+import Card from "../components/Card.astro";
+import { home } from "../content/content.json";
+import Layout from "../layouts/Layout.astro";
+
+interface Props {
+  frontmatter: Record<string, any>;
+  mainImage: ImageMetadata;
+}
+const { frontmatter, mainImage } = Astro.props;
+
+const { title, description, pageTitle } = frontmatter;
+
+const seo = {
+  title,
+  description,
+};
+---
+
+<Layout title={pageTitle} seo={seo}>
+  <Image src={mainImage} alt={pageTitle} class="mt-28 rounded-xl mx-auto" />
+  <div class="text-gray-700 p-8 rounded-xl">
+    <slot />
+  </div>
+  <ul role="list" class="grid grid-cols-3 gap-4">
+    <Card body={home.inscriptionTouteAnnee} />
+    <Card body={home.pretKimono} />
+    <Card body={home.profEtat} />
+  </ul>
+</Layout>

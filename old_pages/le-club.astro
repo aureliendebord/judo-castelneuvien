@@ -1,0 +1,9 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import * as post from "../content/le-club/le-club.md";
+import mainImage from "../images/club.jpeg";
+---
+
+<PageLayout frontmatter={post.frontmatter} mainImage={mainImage}>
+  <post.Content />
+</PageLayout>
