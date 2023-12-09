@@ -1,0 +1,25 @@
+---
+interface Props {
+  menuItems: {
+    text: string;
+    to: string;
+  }[];
+}
+
+const { menuItems } = Astro.props;
+---
+
+<ul
+  role="menu"
+  class="fixed top-20 left-1/2 transform -translate-x-1/2 bg-white bg-opacity-70 flex items-center justify-center space-x-2 rounded-md shadow-md"
+>
+  {
+    menuItems.map((item) => (
+      <li class="py-4 text-gray-700 p-8 font-semibold ">
+        <a title={item.text} href={item.to}>
+          {item.text}
+        </a>
+      </li>
+    ))
+  }
+</ul>

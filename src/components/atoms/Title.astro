@@ -1,0 +1,16 @@
+---
+interface Props {
+  text: string;
+  classes?: string;
+  level?: 1 | 2 | 3 | 4;
+}
+
+const { text, classes = "text-black", level = 1 } = Astro.props;
+
+const textClass = `${classes} text-4xl font-bold`;
+---
+
+{level === 1 && <h1 class={textClass}>{text}</h1>}
+{level === 2 && <h2 class={textClass}>{text}</h2>}
+{level === 3 && <h3 class={textClass}>{text}</h3>}
+{level === 4 && <h4 class={textClass}>{text}</h4>}
