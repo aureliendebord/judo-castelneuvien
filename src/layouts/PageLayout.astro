@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import Card from "../components/Card.astro";
 import Title from "../components/atoms/Title.astro";
 import Layout from "../layouts/Layout.astro";
@@ -9,7 +8,7 @@ interface Props {
   title: string;
   description: string;
   pageTitle: string;
-  imagePath: string;
+  imagePath?: string;
 }
 
 const { title, description, pageTitle, imagePath } = Astro.props;
@@ -18,19 +17,13 @@ const seo = {
   title,
   description,
 };
-
-const images = import.meta.glob("/src/assets/*");
 ---
 
 <Layout title={pageTitle} seo={seo}>
   <Title level={1} text={pageTitle} classes="my-6 text-center text-gray-700" />
   {
     imagePath && (
-      <Image
-        src={images[imagePath]()}
-        alt={pageTitle}
-        class="mt-8 rounded-xl mx-auto"
-      />
+      <img src={imagePath} alt={pageTitle} class="mt-8 rounded-xl mx-auto" />
     )
   }
 
