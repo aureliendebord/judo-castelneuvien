@@ -1,8 +1,7 @@
 ---
-title: Judo Club Castelneuvien
-description: Le Judo Club Castelneuvien est situé à Chateauneuf-la-forêt en Haute-Vienne
-pageTitle: Judo Club Castelneuvien
-imagePath: src/assets/home.jpeg
+title: "Judo Club Castelneuvien"
+description: "Le Judo Club Castelneuvien est situé à Chateauneuf-la-forêt en Haute-Vienne"
+pageTitle: "Judo Club Castelneuvien"
 ---
 
 Le Judo Club Castelneuvien vous invite a la pratique d'un **sport dynamique à hautes valeurs sportives et morales**.
