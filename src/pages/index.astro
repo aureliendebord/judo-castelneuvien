@@ -1,9 +1,13 @@
 ---
-import mainImage from "../content/home/home.jpeg";
 import * as post from "../content/home/home.md";
 import PageLayout from "../layouts/PageLayout.astro";
 ---
 
-<PageLayout frontmatter={post.frontmatter} mainImage={mainImage}>
+<PageLayout
+  title={post.frontmatter.title}
+  description={post.frontmatter.description}
+  pageTitle={post.frontmatter.pageTitle}
+  imagePath={post.frontmatter.imagePath}
+>
   <post.Content />
 </PageLayout>

@@ -1,26 +1,44 @@
 ---
 import { Image } from "astro:assets";
 import Card from "../components/Card.astro";
-import { home } from "../content/content.json";
+import Title from "../components/atoms/Title.astro";
 import Layout from "../layouts/Layout.astro";
+import { home } from "../texts/content.json";
 
 interface Props {
-  frontmatter: Record<string, any>;
-  mainImage: ImageMetadata;
+  title: string;
+  description: string;
+  pageTitle: string;
+  imagePath: string;
 }
-const { frontmatter, mainImage } = Astro.props;
 
-const { title, description, pageTitle } = frontmatter;
+const { title, description, pageTitle, imagePath } = Astro.props;
 
 const seo = {
   title,
   description,
 };
+
+const images = import.meta.glob("/src/assets/*");
 ---
 
 <Layout title={pageTitle} seo={seo}>
-  <Image src={mainImage} alt={pageTitle} class="mt-28 rounded-xl mx-auto" />
-  <div class="text-gray-700 p-8 rounded-xl">
+  <Title level={1} text={pageTitle} classes="my-6 text-center text-gray-700" />
+  {
+    imagePath && (
+      <Image
+        src={images[imagePath]()}
+        alt={pageTitle}
+        class="mt-8 rounded-xl mx-auto"
+      />
+    )
+  }
+
+  <div
+    class={`prose lg:prose-xl text-gray-700 p-8 rounded-xl ${
+      !imagePath ? "mt-8" : ""
+    }`}
+  >
     <slot />
   </div>
   <ul role="list" class="grid grid-cols-3 gap-4">

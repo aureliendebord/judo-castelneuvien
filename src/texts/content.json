@@ -17,6 +17,9 @@
       "to": "/contact"
     }
   },
+  "site": {
+    "title": "Judo Club Castelneuvien"
+  },
   "home": {
     "inscriptionTouteAnnee": "Inscriptions dès la rentrée et toute l'année.",
     "pretKimono": "Prêt de kimono possible.",
