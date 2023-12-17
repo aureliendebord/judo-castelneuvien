@@ -9,17 +9,114 @@ interface Props {
 const { menuItems } = Astro.props;
 ---
 
-<ul
-  role="menu"
-  class="bg-white bg-opacity-70 flex items-center justify-center space-x-2 rounded-md shadow-md"
->
-  {
-    menuItems.map((item) => (
-      <li class="py-4 text-gray-700 p-8 font-semibold ">
-        <a title={item.text} href={item.to}>
-          {item.text}
-        </a>
-      </li>
-    ))
-  }
-</ul>
+<header>
+  <nav
+    class="mx-auto flex max-w-7xl items-center justify-center"
+    aria-label="Global"
+  >
+    <div class="flex lg:hidden">
+      <button
+        id="menu-open-button"
+        type="button"
+        class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+      >
+        <span class="sr-only">Open main menu</span>
+        <svg
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+        </svg>
+      </button>
+    </div>
+    <div
+      class="hidden lg:flex lg:gap-x-12 bg-white bg-opacity-70 items-center justify-center space-x-2 rounded-md shadow-md w-full"
+    >
+      {
+        menuItems.map((item) => (
+          <li class="p-2 list-none">
+            <a
+              href={item.to}
+              title={item.text}
+              class="text-sm font-semibold leading-6 text-gray-700"
+            >
+              {item.text}
+            </a>
+          </li>
+        ))
+      }
+    </div>
+  </nav>
+  <!-- Mobile menu, show/hide based on menu open state. -->
+  <div id="mobile-menu" class="hidden" role="dialog" aria-modal="true">
+    <!-- Background backdrop, show/hide based on slide-over state. -->
+    <div class="fixed inset-0 z-10"></div>
+    <div
+      class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+    >
+      <div class="flex items-center justify-center">
+        <button
+          id="menu-close-button"
+          type="button"
+          class="-m-2.5 rounded-md p-2.5 text-gray-700"
+        >
+          <span class="sr-only">Close menu</span>
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="mt-6 flow-root">
+        <div class="-my-6 divide-y divide-gray-500/10">
+          <div class="space-y-2 py-6">
+            {
+              menuItems.map((item) => (
+                <li class="list-none py-4 p-2">
+                  <a
+                    href={item.to}
+                    title={item.text}
+                    class="-mx-3 block rounded-lg px-3 py-2 text-lg font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    {item.text}
+                  </a>
+                </li>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script type="module">
+  document.addEventListener("DOMContentLoaded", () => {
+    const openButton = document.getElementById("menu-open-button");
+    const closeButton = document.getElementById("menu-close-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    const toggleMenu = () => {
+      mobileMenu?.classList.toggle("hidden");
+    };
+
+    openButton?.addEventListener("click", toggleMenu);
+    closeButton?.addEventListener("click", toggleMenu);
+  });
+</script>
